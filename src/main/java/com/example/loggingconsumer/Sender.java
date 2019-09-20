@@ -17,8 +17,8 @@ public class Sender {
     this.rabbitTemplate.convertAndSend("testTopicExchange","hello", sendMsg);
   }
 
-  public void sendToMyQueue() {
-    String sendMsg = "helloToMyQue msg " + new Date();
+  public void sendToMyQueue(String msg) {
+    String sendMsg = msg + "sent to MyQue " + new Date();
     this.rabbitTemplate.convertAndSend("testTopicExchange","My", sendMsg);
   }
 

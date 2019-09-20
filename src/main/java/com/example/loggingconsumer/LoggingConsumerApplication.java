@@ -6,12 +6,14 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+@EnableSwagger2
 public class LoggingConsumerApplication {
 
   public static void main(String[] args) {
@@ -46,13 +48,13 @@ public class LoggingConsumerApplication {
   @RabbitListener(queues="MyQueue")
   public void handle(String msg) {
 
-    System.out.println("Received: " + msg);
+    System.out.println("Received in MyQueue: " + msg);
   }
 
   @RabbitHandler
   @RabbitListener(queues="helloQueue")
   public void handleHello(String msg) {
 
-    System.out.println("Received2: " + msg);
+    System.out.println("Received in hellQueque: " + msg);
   }
 }
