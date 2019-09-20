@@ -13,13 +13,13 @@ public class Sender {
   private AmqpTemplate rabbitTemplate;
 
   public void send() {
-    String sendMsg = "hello1 " + new Date();
-    this.rabbitTemplate.convertAndSend("helloQueue", sendMsg);
+    String sendMsg = "send msg " + new Date();
+    this.rabbitTemplate.convertAndSend("testTopicExchange","hello", sendMsg);
   }
 
   public void sendToMyQueue() {
-    String sendMsg = "helloToMyQue " + new Date();
-    this.rabbitTemplate.convertAndSend("MyQueue", sendMsg);
+    String sendMsg = "helloToMyQue msg " + new Date();
+    this.rabbitTemplate.convertAndSend("testTopicExchange","My", sendMsg);
   }
 
 }
