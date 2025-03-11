@@ -21,12 +21,12 @@ public class LoggingConsumerApplication {
   }
   @Bean
   TopicExchange createExchange() {
-    return new TopicExchange("testTopicExchange");
+    return new TopicExchange("TestTopicExchange");
   }
   
   @Bean
   public Queue helloQueue() {
-    return new Queue("helloQueue");
+    return new Queue("HelloQueue");
   }
   
   @Bean
@@ -36,7 +36,7 @@ public class LoggingConsumerApplication {
   
   @Bean
   Binding createHelloQueBinding(Queue helloQueue, TopicExchange exchange) {
-    return BindingBuilder.bind(helloQueue).to(exchange).with("hello");
+    return BindingBuilder.bind(helloQueue).to(exchange).with("Hello");
   }
   
   @Bean
@@ -46,15 +46,13 @@ public class LoggingConsumerApplication {
   
   @RabbitHandler
   @RabbitListener(queues="MyQueue")
-  public void handle(String msg) {
-
+  public void handleMy(String msg) {
     System.out.println("Received in MyQueue: " + msg);
   }
 
   @RabbitHandler
-  @RabbitListener(queues="helloQueue")
+  @RabbitListener(queues="HelloQueue")
   public void handleHello(String msg) {
-
-    System.out.println("Received in hellQueque: " + msg);
+    System.out.println("Received in HelloQueue: " + msg);
   }
 }

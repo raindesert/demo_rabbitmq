@@ -1,5 +1,14 @@
 spring:
  rabbitmq:
+  listener:
+   simple:
+   acknowledge-mode: manual
+   retry:
+    initial-interval: 1000
+    enable: true
+    max-attempt: 3
+    max-interval: 60000
+    multiplier: 1.0
   host: 127.0.0.1
   port: 5672
   username: guest

@@ -12,9 +12,9 @@ public class Sender {
   @Autowired
   private AmqpTemplate rabbitTemplate;
 
-  public void send() {
+  public void sendToHello() {
     String sendMsg = "send msg " + new Date();
-    this.rabbitTemplate.convertAndSend("testTopicExchange","hello", sendMsg);
+    this.rabbitTemplate.convertAndSend("testTopicExchange","Hello", sendMsg);
   }
 
   public void sendToMyQueue(String msg) {

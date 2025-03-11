@@ -20,7 +20,7 @@ public class Controller {
   @ApiOperation(value="hello", notes="send hello msg")
   @GetMapping("/hello")
   public String hello() {
-    sender.send();
+    sender.sendToHello();
     return "msg sent";
   }
 
