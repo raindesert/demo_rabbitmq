@@ -2,7 +2,7 @@ spring:
  rabbitmq:
   listener:
    simple:
-   acknowledge-mode: manual
+   acknowledge-mode: AUTO
    retry:
     initial-interval: 1000
     enable: true

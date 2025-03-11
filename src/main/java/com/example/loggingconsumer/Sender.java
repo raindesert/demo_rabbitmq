@@ -14,12 +14,12 @@ public class Sender {
 
   public void sendToHello() {
     String sendMsg = "send msg " + new Date();
-    this.rabbitTemplate.convertAndSend("testTopicExchange","Hello", sendMsg);
+    this.rabbitTemplate.convertAndSend("TestTopicExchange","Hello", sendMsg);
   }
 
   public void sendToMyQueue(String msg) {
     String sendMsg = msg + "sent to MyQue " + new Date();
-    this.rabbitTemplate.convertAndSend("testTopicExchange","My", sendMsg);
+    this.rabbitTemplate.convertAndSend("TestTopicExchange","My", sendMsg);
   }
 
 }
