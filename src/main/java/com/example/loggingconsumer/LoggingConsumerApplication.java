@@ -1,9 +1,8 @@
 package com.example.loggingconsumer;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+
+import com.rabbitmq.client.Channel;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.boot.SpringApplication;
@@ -46,13 +45,15 @@ public class LoggingConsumerApplication {
   
   @RabbitHandler
   @RabbitListener(queues="MyQueue")
-  public void handleMy(String msg) {
-    System.out.println("Received in MyQueue: " + msg);
+  public void handleMy(String msg,Message m, Channel channel) throws Exception{
+    System.out.println("Received in MyQueue: " + msg+"!");
+    channel.basicAck(m.getMessageProperties().getDeliveryTag(),false);
   }
 
   @RabbitHandler
   @RabbitListener(queues="HelloQueue")
-  public void handleHello(String msg) {
+  public void handleHello(Message msg, Channel channel) throws Exception{
     System.out.println("Received in HelloQueue: " + msg);
+    channel.basicAck(msg.getMessageProperties().getDeliveryTag(),false);
   }
 }
